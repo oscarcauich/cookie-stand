@@ -12,7 +12,12 @@ var firstAndPike = {
   hourlyMaxCustomer: 65,
   avergHourlyCookieSales:6.3,
   locationName: '1st and PIke',
-}
+  forcastRandomCustomer: function() {
+    return Math.ceil(Math.random() * (this.hourlyMaxCustomer - this.hourlyMinCustomer));
+
+  }
+};
+  console.log(firstAndPike.forcastRandomCustomer());
 var SeaTacAirport = {
   ownersName: 'Michael Wood',
   address: '1100 Sunset Bldv NE',
