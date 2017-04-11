@@ -21,6 +21,7 @@ StoreLocations.prototype.genCookieSales = function() {
   return Math.ceil(Math.random()*(this.avegCookies * this.forcastRandomCustomerPerHour()));
 };
 
+//function to generate number of cookies per hour and store them into an array
 StoreLocations.prototype.genHourNumberCookie = function(){
   var hourlyCookieSales = [];
   var cookieHourlySales;
@@ -30,10 +31,28 @@ StoreLocations.prototype.genHourNumberCookie = function(){
     hourlyCookieSales.push(cookieHourlySales);
     // console.log(cookieHourlySales);
   }
-
-  this.hourlyCookieSales = this.hourlyCookieSales.concat(hourlyCookieSales);
+  console.log(hourlyCookieSales);
 };
 
-var firstStore = new StoreLocations('Test', 10, 20,6.3);
-firstStore.genHourNumberCookie();
-console.log(firstStore.hourlyCookieSales);
+//Create function to create a table for us
+StoreLocations.prototype.createTable = function() {
+  console.log(this.storeName);
+
+  var tableBox = document.createElement('table');
+  var tableBoxRow = document.createElement('tr');
+  var tableBoxHeading = document.createElement('td');
+
+  tableBoxHeading.textContent = this.storeName;
+  tableBoxRow.appendChild(tableBoxHeading);
+  tableBox.appendChild(tableBoxRow);
+  // var storeName, storeHours, numberOfCookies;
+
+  return tableBox;
+};
+
+var displayResult = document.getElementById('body');
+var firstAndPike = new StoreLocations('test2', 12, 13, 3.4);
+firstAndPike.genHourNumberCookie();
+var generateTableBox = firstAndPike.createTable();
+displayResult.appendChild(generateTableBox);
+console.log(firstAndPike.stor);
