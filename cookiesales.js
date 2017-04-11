@@ -13,54 +13,82 @@ var firstAndPike = {
   hourlyMinCustomer: 23,
   hourlyMaxCustomer: 65,
   avergHourlyCookieSales: 6.3,
-  locationName: '1st and PIke',
+  StoreName: '1st and Pike',
 
-  forcastRandomCustomer: function() {
-    return Math.ceil(Math.random() * (this.hourlyMaxCustomer - this.hourlyMinCustomer));
+  forcastRandomCustomerPerHour: function() {
+    return Math.ceil(Math.random() * (this.hourlyMaxCustomer / this.hourlyMinCustomer));
   },
 
-  hourlySales: function() {
+  hourlyStoreSales: function() {
     for (var i = 0; i < this.storeHours.length; i++){
-      this.hourlyCookieSales.push(Math.ceil(Math.random()*(this.avergHourlyCookieSales * this.forcastRandomCustomer())))[i];
-      console.log(this.hourlyCookieSales);
+      this.hourlyCookieSales.push(Math.ceil(Math.random()*(this.avergHourlyCookieSales * this.forcastRandomCustomerPerHour())))[i];
+      // console.log(this.hourlyCookieSales);
     }
   },
 }
 
-
 var getStoreHours = firstAndPike.storeHours;
-var generateSalesData = firstAndPike.hourlySales();
+var generateSalesData = firstAndPike.hourlyStoreSales();
 var getHourlycookieSales = firstAndPike.hourlyCookieSales;
-console.log(getStoreHours);
-console.log(getHourlycookieSales);
 
-var StoreName = document.getElementById('hourlySales');
-StoreName.textContent = firstAndPike.locationName;
+var StoreName = document.getElementById('StoreName');
+StoreName.textContent = firstAndPike.StoreName;
 
-var storeHours = document.getElementById('storeHours');
+var storeHours = document.getElementById('CookieHourlySales');
 
 var storeHoursLi;
 for (var i = 0; i < getStoreHours.length; i++ ){
-  console.log(getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies');
+
   storeHoursLi = document.createElement('li');
   storeHoursLi.textContent = getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies';
   storeHours.appendChild(storeHoursLi);
 }
 
-
+//Second Location Object
 
 var SeaTacAirport = {
   ownersName: 'Michael Wood',
   address: '1100 Sunset Bldv NE',
   city:'Renton',
   state: 'WA',
+  storeHours: ['6am', '7am','8am','19am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'],
+  hourlyCookieSales: [],
   zipCode: 98056,
   phoneNumber: 2063885908,
   hourlyMinCustomer: 3,
   hourlyMaxCustomer: 24,
   avergHourlyCookieSales:1.2,
-  locationName: '1st and PIke',
+  StoreName: 'SeaTac Airport ',
+
+  forcastRandomCustomerPerHour: function() {
+    return Math.ceil(Math.random() * (this.hourlyMaxCustomer / this.hourlyMinCustomer));
+  },
+
+  hourlyStoreSales: function() {
+    for (var i = 0; i < this.storeHours.length; i++){
+      this.hourlyCookieSales.push(Math.ceil(Math.random()*(this.avergHourlyCookieSales * this.forcastRandomCustomerPerHour())))[i];
+      // console.log(this.hourlyCookieSales);
+    }
+  },
 }
+
+var getStoreHours = SeaTacAirport.storeHours;
+var generateSalesData = SeaTacAirport.hourlyStoreSales();
+var getHourlycookieSales = SeaTacAirport.hourlyCookieSales;
+
+var StoreName = document.getElementById('StoreNameTwo');
+StoreName.textContent = SeaTacAirport.StoreName;
+
+var storeHours = document.getElementById('CookieHourlySalesSecondStore');
+
+var storeHoursLi;
+for (var i = 0; i < getStoreHours.length; i++ ){
+  storeHoursLi = document.createElement('li');
+  storeHoursLi.textContent = getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies';
+  storeHours.appendChild(storeHoursLi);
+}
+
+//Third Location
 
 var SeattleCenter = {
   ownersName: 'Michael Wood',
