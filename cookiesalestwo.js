@@ -17,11 +17,23 @@ StoreLocations.prototype.forcastRandomCustomerPerHour = function(){
 };
 
 //create second Object Method to calculate number of cookies sold
-StoreLocations.prototype.genHourlyCookieSales = function() {
+StoreLocations.prototype.genCookieSales = function() {
   return Math.ceil(Math.random()*(this.avegCookies * this.forcastRandomCustomerPerHour()));
 };
 
+StoreLocations.prototype.genHourNumberCookie = function(){
+  var hourlyCookieSales = [];
+  var cookieHourlySales;
+  var i;
+  for(i = 0; i < this.storeHours.length; i++){
+    cookieHourlySales = this.genCookieSales();
+    hourlyCookieSales.push(cookieHourlySales);
+    // console.log(cookieHourlySales);
+  }
+
+  this.hourlyCookieSales = this.hourlyCookieSales.concat(hourlyCookieSales);
+};
 
 var firstStore = new StoreLocations('Test', 10, 20,6.3);
-// firstStore.genHourlyCookieSales();
-console.log(firstStore.genHourlyCookieSales());
+firstStore.genHourNumberCookie();
+console.log(firstStore.hourlyCookieSales);
