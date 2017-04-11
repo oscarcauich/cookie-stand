@@ -33,7 +33,20 @@ var generateSalesData = firstAndPike.hourlySales();
 var getHourlycookieSales = firstAndPike.hourlyCookieSales;
 console.log(getStoreHours);
 console.log(getHourlycookieSales);
-// for(var i = 0; i < )
+
+var StoreName = document.getElementById('hourlySales');
+StoreName.textContent = firstAndPike.locationName;
+
+var storeHours = document.getElementById('storeHours');
+
+var storeHoursLi;
+for (var i = 0; i < getStoreHours.length; i++ ){
+  console.log(getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies');
+  storeHoursLi = document.createElement('li');
+  storeHoursLi.textContent = getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies';
+  storeHours.appendChild(storeHoursLi);
+}
+
 
 
 var SeaTacAirport = {
