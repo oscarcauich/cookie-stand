@@ -20,16 +20,20 @@ var firstAndPike = {
   },
 
   hourlyStoreSales: function() {
+    var totalSoldCookies = 0;
     for (var i = 0; i < this.storeHours.length; i++){
       this.hourlyCookieSales.push(Math.ceil(Math.random()*(this.avergHourlyCookieSales * this.forcastRandomCustomerPerHour())))[i];
+      this.totalSoldCookies += this.hourlyCookieSales[i];
       // console.log(this.hourlyCookieSales);
     }
   },
-}
+};
 
 var getStoreHours = firstAndPike.storeHours;
 var generateSalesData = firstAndPike.hourlyStoreSales();
 var getHourlycookieSales = firstAndPike.hourlyCookieSales;
+
+
 
 var StoreName = document.getElementById('StoreName');
 StoreName.textContent = firstAndPike.storeName;
@@ -40,8 +44,9 @@ var storeHoursLi;
 for (var i = 0; i < getStoreHours.length; i++ ){
 
   storeHoursLi = document.createElement('li');
-  storeHoursLi.textContent = getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies';
+  storeHoursLi.textContent = getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies' + firstAndPike.totalSoldCookies;
   storeHours.appendChild(storeHoursLi);
+  console.log();
 }
 
 //Second Location Object
@@ -70,16 +75,18 @@ var SeaTacAirport = {
       // console.log(this.hourlyCookieSales);
     }
   },
-}
+};
 
 var getStoreHours = SeaTacAirport.storeHours;
+
 var generateSalesData = SeaTacAirport.hourlyStoreSales();
 var getHourlycookieSales = SeaTacAirport.hourlyCookieSales;
 
 var StoreName = document.getElementById('StoreNameTwo');
 StoreName.textContent = SeaTacAirport.storeName;
-
+console.log(StoreName);
 var storeHours = document.getElementById('CookieHourlySalesSecondStore');
+
 
 var storeHoursLi;
 for (var i = 0; i < getStoreHours.length; i++ ){
@@ -124,9 +131,11 @@ StoreName.textContent = SeattleCenter.storeName;
 
 var storeHours = document.getElementById('CookieHourlySalesThirdStore');
 
+
 var storeHoursLi;
 for (var i = 0; i < getStoreHours.length; i++ ){
   storeHoursLi = document.createElement('li');
+
   storeHoursLi.textContent = getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies';
   storeHours.appendChild(storeHoursLi);
 }
