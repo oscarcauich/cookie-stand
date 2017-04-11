@@ -7,17 +7,35 @@ var firstAndPike = {
   city:'Renton',
   state: 'WA',
   zipCode: 98056,
+  storeHours: ['6am', '7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'],
+  hourlyCookieSales: [],
   phoneNumber: 2063885908,
   hourlyMinCustomer: 23,
   hourlyMaxCustomer: 65,
-  avergHourlyCookieSales:6.3,
+  avergHourlyCookieSales: 6.3,
   locationName: '1st and PIke',
+
   forcastRandomCustomer: function() {
     return Math.ceil(Math.random() * (this.hourlyMaxCustomer - this.hourlyMinCustomer));
+  },
 
-  }
-};
-  console.log(firstAndPike.forcastRandomCustomer());
+  hourlySales: function() {
+    for (var i = 0; i < this.storeHours.length; i++){
+      this.hourlyCookieSales.push(Math.ceil(Math.random()*(this.avergHourlyCookieSales * this.forcastRandomCustomer())))[i];
+      console.log(this.hourlyCookieSales);
+    }
+  },
+}
+
+
+var getStoreHours = firstAndPike.storeHours;
+var generateSalesData = firstAndPike.hourlySales();
+var getHourlycookieSales = firstAndPike.hourlyCookieSales;
+console.log(getStoreHours);
+console.log(getHourlycookieSales);
+// for(var i = 0; i < )
+
+
 var SeaTacAirport = {
   ownersName: 'Michael Wood',
   address: '1100 Sunset Bldv NE',
@@ -69,14 +87,3 @@ var Alki = {
 }
 // var heading = document.getElementById('title');
 // heading.textContent = firstAndPike.ownersName;
-var storesTable = document.getElementById('storelistName');
-
-var storeList = document.createElement('td');
-storeList.textContent = firstAndPike.locationName;
-var storeHourlyMinCustomer = document.createElement('td');
-storeHourlyMinCustomer.textContent = firstAndPike.hourlyMinCustomer;
-
-storesTable.appendChild(storeList);
-storesTable.appendChild(storeHourlyMinCustomer);
-
-console.log(storelist);
