@@ -1,12 +1,18 @@
 'use strict';
 
 //Create our Object template
-function StoreLocations () {
-  this.storeName = '1st and Pike';
-  this.hourlyMinCustomer = 23;
-  this.hourlyMaxCustomer = 65;
+function StoreLocations (storeName,hourlyMinCustomer,hourlyMaxCustomer) {
+  this.storeName = storeName;
+  this.hourlyMinCustomer = hourlyMinCustomer;
+  this.hourlyMaxCustomer = hourlyMaxCustomer;
   this.hourlyCookieSales = [];
   this.storeHours = ['6am', '7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'];
 }
 
-console.log(firstStore.storeName);
+//Create first Object Method for StoreLocations, this generates a random number of customers
+StoreLocations.prototype.forcastRandomCustomerPerHour = function(){
+  return Math.ceil(Math.random() * (this.hourlyMaxCustomer - this.hourlyMinCustomer +1) + this.hourlyMinCustomer);
+};
+
+var firstStore = new StoreLocations('Test', 10, 20);
+console.log(firstStore.forcastRandomCustomerPerHour());
