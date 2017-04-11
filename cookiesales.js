@@ -13,7 +13,7 @@ var firstAndPike = {
   hourlyMinCustomer: 23,
   hourlyMaxCustomer: 65,
   avergHourlyCookieSales: 6.3,
-  StoreName: '1st and Pike',
+  storeName: '1st and Pike',
 
   forcastRandomCustomerPerHour: function() {
     return Math.ceil(Math.random() * (this.hourlyMaxCustomer / this.hourlyMinCustomer));
@@ -32,7 +32,7 @@ var generateSalesData = firstAndPike.hourlyStoreSales();
 var getHourlycookieSales = firstAndPike.hourlyCookieSales;
 
 var StoreName = document.getElementById('StoreName');
-StoreName.textContent = firstAndPike.StoreName;
+StoreName.textContent = firstAndPike.storeName;
 
 var storeHours = document.getElementById('CookieHourlySales');
 
@@ -58,7 +58,7 @@ var SeaTacAirport = {
   hourlyMinCustomer: 3,
   hourlyMaxCustomer: 24,
   avergHourlyCookieSales:1.2,
-  StoreName: 'SeaTac Airport ',
+  storeName: 'SeaTac Airport ',
 
   forcastRandomCustomerPerHour: function() {
     return Math.ceil(Math.random() * (this.hourlyMaxCustomer / this.hourlyMinCustomer));
@@ -77,7 +77,7 @@ var generateSalesData = SeaTacAirport.hourlyStoreSales();
 var getHourlycookieSales = SeaTacAirport.hourlyCookieSales;
 
 var StoreName = document.getElementById('StoreNameTwo');
-StoreName.textContent = SeaTacAirport.StoreName;
+StoreName.textContent = SeaTacAirport.storeName;
 
 var storeHours = document.getElementById('CookieHourlySalesSecondStore');
 
@@ -95,36 +95,122 @@ var SeattleCenter = {
   address: '1100 Sunset Bldv NE',
   city:'Renton',
   state: 'WA',
+  storeHours: ['6am', '7am','8am','19am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'],
+  hourlyCookieSales: [],
   zipCode: 98056,
   phoneNumber: 2063885908,
   hourlyMinCustomer: 11,
   hourlyMaxCustomer: 38,
   avergHourlyCookieSales:3.7,
-  locationName: '1st and PIke',
+  storeName: 'Seattle Center',
+
+  forcastRandomCustomerPerHour: function() {
+    return Math.ceil(Math.random() * (this.hourlyMaxCustomer / this.hourlyMinCustomer));
+  },
+
+  hourlyStoreSales: function() {
+    for (var i = 0; i < this.storeHours.length; i++){
+      this.hourlyCookieSales.push(Math.ceil(Math.random()*(this.avergHourlyCookieSales * this.forcastRandomCustomerPerHour())))[i];
+    }
+  },
 }
+
+var getStoreHours = SeattleCenter.storeHours;
+var generateSalesData = SeattleCenter.hourlyStoreSales();
+var getHourlycookieSales = SeattleCenter.hourlyCookieSales;
+
+var StoreName = document.getElementById('StoreNameThree');
+StoreName.textContent = SeattleCenter.storeName;
+
+var storeHours = document.getElementById('CookieHourlySalesThirdStore');
+
+var storeHoursLi;
+for (var i = 0; i < getStoreHours.length; i++ ){
+  storeHoursLi = document.createElement('li');
+  storeHoursLi.textContent = getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies';
+  storeHours.appendChild(storeHoursLi);
+}
+
+//Fourth STore
 var CapitolHill = {
   ownersName: 'Michael Wood',
   address: '1100 Sunset Bldv NE',
   city:'Renton',
   state: 'WA',
+  storeHours: ['6am', '7am','8am','19am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'],
+  hourlyCookieSales: [],
   zipCode: 98056,
   phoneNumber: 2063885908,
   hourlyMinCustomer: 20,
   hourlyMaxCustomer: 38,
   avergHourlyCookieSales:2.3,
-  locationName: '1st and PIke',
+  storeName: 'Capitol Hill',
+
+  forcastRandomCustomerPerHour: function() {
+    return Math.ceil(Math.random() * (this.hourlyMaxCustomer / this.hourlyMinCustomer));
+  },
+
+  hourlyStoreSales: function() {
+    for (var i = 0; i < this.storeHours.length; i++){
+      this.hourlyCookieSales.push(Math.ceil(Math.random()*(this.avergHourlyCookieSales * this.forcastRandomCustomerPerHour())))[i];
+    }
+  },
 }
+
+var getStoreHours = CapitolHill.storeHours;
+var generateSalesData = CapitolHill.hourlyStoreSales();
+var getHourlycookieSales = CapitolHill.hourlyCookieSales;
+
+var StoreName = document.getElementById('StoreNameFourth');
+StoreName.textContent = CapitolHill.storeName;
+
+var storeHours = document.getElementById('CookieHourlySalesFourthStore');
+
+var storeHoursLi;
+for (var i = 0; i < getStoreHours.length; i++ ){
+  storeHoursLi = document.createElement('li');
+  storeHoursLi.textContent = getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies';
+  storeHours.appendChild(storeHoursLi);
+}
+
+//Fifth Location
 var Alki = {
   ownersName: 'Michael Wood',
   address: '1100 Sunset Bldv NE',
   city:'Renton',
   state: 'WA',
+  storeHours: ['6am', '7am','8am','19am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'],
+  hourlyCookieSales: [],
   zipCode: 98056,
   phoneNumber: 2063885908,
   hourlyMinCustomer: 2,
   hourlyMaxCustomer: 16,
   avergHourlyCookieSales:4.6,
-  locationName: '1st and PIke',
+  storeName: 'Alki',
+
+  forcastRandomCustomerPerHour: function() {
+    return Math.ceil(Math.random() * (this.hourlyMaxCustomer / this.hourlyMinCustomer));
+  },
+
+  hourlyStoreSales: function() {
+    for (var i = 0; i < this.storeHours.length; i++){
+      this.hourlyCookieSales.push(Math.ceil(Math.random()*(this.avergHourlyCookieSales * this.forcastRandomCustomerPerHour())))[i];
+    }
+  },
 }
-// var heading = document.getElementById('title');
-// heading.textContent = firstAndPike.ownersName;
+
+var getStoreHours = Alki.storeHours;
+var generateSalesData = Alki.hourlyStoreSales();
+var getHourlycookieSales = Alki.hourlyCookieSales;
+
+var StoreName = document.getElementById('StoreNameFifth');
+StoreName.textContent = Alki.storeName;
+
+var storeHours = document.getElementById('CookieHourlySalesFifthStore');
+
+var storeHoursLi;
+for (var i = 0; i < getStoreHours.length; i++ ){
+  storeHoursLi = document.createElement('li');
+  storeHoursLi.textContent = getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies';
+  storeHours.appendChild(storeHoursLi);
+}
