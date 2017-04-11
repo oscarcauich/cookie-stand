@@ -1,10 +1,12 @@
 'use strict';
 
 //Create our Object template
-function StoreLocations (storeName,hourlyMinCustomer,hourlyMaxCustomer) {
+function StoreLocations (storeName,hourlyMinCustomer,hourlyMaxCustomer,avegCookies) {
   this.storeName = storeName;
   this.hourlyMinCustomer = hourlyMinCustomer;
   this.hourlyMaxCustomer = hourlyMaxCustomer;
+  this.avegCookies = avegCookies;
+  this.hourlySales = [];
   this.hourlyCookieSales = [];
   this.storeHours = ['6am', '7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'];
 }
@@ -14,5 +16,12 @@ StoreLocations.prototype.forcastRandomCustomerPerHour = function(){
   return Math.ceil(Math.random() * (this.hourlyMaxCustomer - this.hourlyMinCustomer +1) + this.hourlyMinCustomer);
 };
 
-var firstStore = new StoreLocations('Test', 10, 20);
-console.log(firstStore.forcastRandomCustomerPerHour());
+//create second Object Method to calculate number of cookies sold
+StoreLocations.prototype.genHourlyCookieSales = function() {
+  return Math.ceil(Math.random()*(this.avegCookies * this.forcastRandomCustomerPerHour()));
+};
+
+
+var firstStore = new StoreLocations('Test', 10, 20,6.3);
+// firstStore.genHourlyCookieSales();
+console.log(firstStore.genHourlyCookieSales());
