@@ -12,10 +12,11 @@ body{
   width: 80%;
   height: 97%;
   margin: auto;
-  border: 0px solid blue;
+  border: 15px solid #EDB0F0;
+  border-radius: 10px;
 }
 #header {
-  background-image: url("images/headerImage.jpg");
+  background-image: url("images/headerbg.jpg");
   background-position:center;
   height: 15%;
   background-color: red;
@@ -30,7 +31,8 @@ body{
   /*border: 2px solid red;*/
   width: 100%;
   height: 80%;
-  margin: 5px auto;
+  margin: 3px auto;
+  margin-top: 50px;
   position: absolute;
   display: table;
 }
@@ -43,12 +45,18 @@ table {
   border-collapse: collapse;
 }
 tr,td {
-  text-align:left;
+  text-align:center;
   width: auto;
   height: 10px;
   border: 1px solid #CACCC9;
-  padding: 25px;
+  padding: 5px;
 }
 tr:nth-child(even){
   background-color: #f2f2f2
+}
+th {
+  background-color: #84C266;
+  color: #F5F9F4;
+  width: auto;
+  height: 5px;
 }

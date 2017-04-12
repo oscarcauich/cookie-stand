@@ -7,7 +7,7 @@ function StoreLocations (storeName,hourlyMinCustomer,hourlyMaxCustomer,avegCooki
   this.hourlyMaxCustomer = hourlyMaxCustomer;
   this.avegCookies = avegCookies;
   this.hourlyCookieSales = [];
-  this.storeHours = ['6am', '7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'];
+          this.storeHours = ['6am', '7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'];
 }
 
 //Create first Object Method for StoreLocations, this generates a random number of customers
@@ -31,9 +31,9 @@ StoreLocations.prototype.genHourNumberCookie = function(){
 StoreLocations.prototype.createTable = function() {
 
 
-  var rowHours, rowHourDisplay, rowStoreName;
+    var rowHours, rowHourDisplay, rowStoreName;
   rowHours = document.createElement('tr');
-  rowStoreName = document.createElement('td');
+    rowStoreName = document.createElement('td');
   rowHours.appendChild(rowStoreName);
 
   rowStoreName.textContent = this.storeName;
@@ -49,13 +49,14 @@ StoreLocations.prototype.createTable = function() {
 };
 StoreLocations.prototype.createTableHeading = function() {
   var tableHeadingRow = document.createElement('tr');
-  var tableHeading = document.createElement('td');
+  var tableHeading = document.createElement('th');
+  // tableHeading.textContent = '';
   tableHeadingRow.appendChild(tableHeading);
 
-  tableHeading.textContent = '';
-
   for(var i = 0; i < this.storeHours.length; i++){
-
+    var rowHourDisplay = document.createElement('th');
+    rowHourDisplay.textContent = this.storeHours[i];
+    tableHeadingRow.appendChild(rowHourDisplay);
   }
 
   return tableHeadingRow;
@@ -67,8 +68,8 @@ var displayResult = document.getElementById('tableResults');
 
 var firstAndPike = new StoreLocations('1st and Pike', 12, 13, 3.4);
 firstAndPike.genHourNumberCookie();
-var generateTableBox = firstAndPike.createTable();
 var generateHeadingRow = firstAndPike.createTableHeading();
+var generateTableBox = firstAndPike.createTable();
 displayResult.appendChild(generateHeadingRow);
 displayResult.appendChild(generateTableBox);
 
