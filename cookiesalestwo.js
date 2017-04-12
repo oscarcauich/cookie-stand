@@ -73,23 +73,26 @@ displayResult.appendChild(generateHeadingRow);
 displayResult.appendChild(generateTableBox);
 
 //Second Store
-var SeaTacAirport = new StoreLocations('SeaTacAirport', 3, 24, 1.2);
-SeaTacAirport.genHourNumberCookie();
-generateTableBox = SeaTacAirport.createTable();
+var seaTacAirport = new StoreLocations('SeaTacAirport', 3, 24, 1.2);
+seaTacAirport.genHourNumberCookie();
+generateTableBox = seaTacAirport.createTable();
+displayResult.appendChild(generateTableBox);
+
+//Third Store
+var seattleCenter = new StoreLocations('Seattle Center', 11, 38, 3.7);
+seattleCenter.genHourNumberCookie();
+generateTableBox = seattleCenter.createTable();
 displayResult.appendChild(generateTableBox);
 
 
-
-var firstAndPike = new StoreLocations('1st', 12, 13, 3.4);
-firstAndPike.genHourNumberCookie();
-var generateTableBox = firstAndPike.createTable();
+//Fourth Store
+var capitolHill = new StoreLocations('Capitol Hill', 20, 38, 2.3);
+capitolHill.genHourNumberCookie();
+generateTableBox = capitolHill.createTable();
 displayResult.appendChild(generateTableBox);
-console.log(firstAndPike.hourlyCookieSales);
 
-
-// var displayResult = document.getElementById('tableResults');
-var firstAndPike = new StoreLocations('1st', 12, 13, 3.4);
-firstAndPike.genHourNumberCookie();
-var generateTableBox = firstAndPike.createTable();
+//Fifth Store
+var Alki = new StoreLocations('Alki', 2, 16, 4.6);
+Alki.genHourNumberCookie();
+generateTableBox = Alki.createTable();
 displayResult.appendChild(generateTableBox);
-console.log(firstAndPike.hourlyCookieSales);
