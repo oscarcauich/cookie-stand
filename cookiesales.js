@@ -1,7 +1,38 @@
 'use strict';
-
+ console.log('test');
 //Select the HTML element we will be modifing
 var displayResult = document.getElementById('tableResults');
+
+var addNewStore = document.getElementById('newStoreAdd');
+
+addNewStore.addEventListener('submit', createNewStore);
+
+function createNewStore(event) {
+  event.preventDefault();
+
+  var getTarget = event.target;
+//get Values from form
+  var newStoreNameAdd = getTarget.newStoreNameAdd.value;
+  var newStoreMinCustomer = getTarget.newStoreMinCustomer.value;
+  var newStoreMaxCustomer = getTarget.newStoreMaxCustomer.value;
+  var newStoreAverCustomer = getTarget.newStoreAverCustomer.value;
+
+  getTarget.newStoreNameAdd.value = '';
+  getTarget.newStoreMinCustomer.value = '';
+  getTarget.newStoreMaxCustomer.value = '';
+  getTarget.newStoreAverCustomer.value = '';
+
+
+  if(newStoreNameAdd){
+    var addNewStoreName= new StoreLocations(newStoreNameAdd, newStoreMinCustomer, newStoreMaxCustomer, newStoreAverCustomer);
+    addNewStoreName.genHourNumberCookie();
+    addNewStoreName.createtableRows();
+
+    console.log(newStoreNameAdd, newStoreMinCustomer, newStoreMaxCustomer,newStoreAverCustomer);
+  } else {
+    alert('All Input fields are Required');
+  }
+}
 
 //Create our Object template
 function StoreLocations (storeName,hourlyMinCustomer,hourlyMaxCustomer,avegCookies) {
@@ -30,7 +61,7 @@ StoreLocations.prototype.genHourNumberCookie = function(){
   }
 };
 
-//Create function to create a table for us
+//function to create table rows for each store cookie sales per hour
 StoreLocations.prototype.createtableRows = function() {
 
   var rowHours, rowHourDisplay, rowStoreName;
@@ -58,9 +89,9 @@ StoreLocations.prototype.createTableHeading = function() {
     var rowHourDisplay = document.createElement('th');
     rowHourDisplay.textContent = this.storeHours[i];
     tableHeadingRow.appendChild(rowHourDisplay);
-
     displayResult.appendChild(tableHeadingRow);
   }
+
 };
 
 //First Store
