@@ -1,17 +1,18 @@
 'use strict';
- console.log('test');
-//Select the HTML element we will be modifing
-var displayResult = document.getElementById('tableResults');
 
+//Select the HTML elements we will be modifing
+var displayResult = document.getElementById('tableResults');
 var addNewStore = document.getElementById('newStoreAdd');
 
+//Add an Event Lisnter
 addNewStore.addEventListener('submit', createNewStore);
 
+//Create the listner handler function
 function createNewStore(event) {
   event.preventDefault();
-
   var getTarget = event.target;
-//get Values from form
+
+//get Values from form inputs
   var newStoreNameAdd = getTarget.newStoreNameAdd.value;
   var newStoreMinCustomer = getTarget.newStoreMinCustomer.value;
   var newStoreMaxCustomer = getTarget.newStoreMaxCustomer.value;
