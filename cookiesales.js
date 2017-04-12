@@ -31,7 +31,7 @@ StoreLocations.prototype.genHourNumberCookie = function(){
 };
 
 //Create function to create a table for us
-StoreLocations.prototype.createTable = function() {
+StoreLocations.prototype.createtableRows = function() {
 
   var rowHours, rowHourDisplay, rowStoreName;
   rowHours = document.createElement('tr');
@@ -67,24 +67,24 @@ StoreLocations.prototype.createTableHeading = function() {
 var firstAndPike = new StoreLocations('1st and Pike', 12, 13, 3.4);
 firstAndPike.genHourNumberCookie();
 firstAndPike.createTableHeading();
-firstAndPike.createTable();
+firstAndPike.createtableRows();
 
 //Second Store
 var seaTacAirport = new StoreLocations('SeaTacAirport', 3, 24, 1.2);
 seaTacAirport.genHourNumberCookie();
-seaTacAirport.createTable();
+seaTacAirport.createtableRows();
 
 //Third Store
 var seattleCenter = new StoreLocations('Seattle Center', 11, 38, 3.7);
 seattleCenter.genHourNumberCookie();
-seattleCenter.createTable();
+seattleCenter.createtableRows();
 
 //Fourth Store
 var capitolHill = new StoreLocations('Capitol Hill', 20, 38, 2.3);
 capitolHill.genHourNumberCookie();
-capitolHill.createTable();
+capitolHill.createtableRows();
 
 //Fifth Store
 var Alki = new StoreLocations('Alki', 2, 16, 4.6);
 Alki.genHourNumberCookie();
-Alki.createTable();
+Alki.createtableRows();
