@@ -21,5 +21,34 @@ body{
   background-color: red;
 }
 #body {
-  border: 2px solid blue;
+  position: relative;
+  height: 85%;
+  width: 100%;
+  /*border: 2px solid blue;*/
+}
+#salesResult {
+  /*border: 2px solid red;*/
+  width: 100%;
+  height: 80%;
+  margin: 5px auto;
+  position: absolute;
+  display: table;
+}
+table {
+  /*position: absolute;*/
+  border: 1px solid #CACCC9;
+  width: 100%;
+  height: 90%;
+  text-align: center;
+  border-collapse: collapse;
+}
+tr,td {
+  text-align:left;
+  width: auto;
+  height: 10px;
+  border: 1px solid #CACCC9;
+  padding: 25px;
+}
+tr:nth-child(even){
+  background-color: #f2f2f2
 }
