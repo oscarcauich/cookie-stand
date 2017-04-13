@@ -63,6 +63,7 @@ StoreLocations.prototype.createtableRows = function() {
   var rowHours, rowHourDisplay, rowStoreName, rowTotals;
   rowHours = document.createElement('tr');
   rowStoreName = document.createElement('td');
+  rowStoreName.className = 'bold-txt';
   rowHours.appendChild(rowStoreName);
 
   rowStoreName.textContent = this.storeName;
@@ -75,6 +76,7 @@ StoreLocations.prototype.createtableRows = function() {
 
   rowTotals = document.createElement('td');
   rowTotals.textContent = this.totalNumberCookies;
+  rowTotals.className = 'bold-txt';
   rowHours.appendChild(rowTotals);
   displayResult.appendChild(rowHours);
 };
