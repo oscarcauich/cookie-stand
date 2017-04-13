@@ -98,6 +98,7 @@ input {
   width: 24.4%;
   height: 40px;
   margin: 3px;
+  padding-left: 10px;
 }
 button {
   display: block;
@@ -138,4 +139,5 @@ th {
   color: #F5F9F4;
   width: auto;
   height: 5px;
+  border-bottom: 1px solid #468B25;
 }

@@ -86,7 +86,9 @@ StoreLocations.prototype.createTableHeading = function() {
     tableHeadingRow.appendChild(rowHourDisplay);
     displayResult.appendChild(tableHeadingRow);
   }
-
+  var tableHeadingTotals = document.createElement('th');
+  tableHeadingTotals.textContent = 'Totals: ';
+  tableHeadingRow.appendChild(tableHeadingTotals);
 };
 
 //First Store
