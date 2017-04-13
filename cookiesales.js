@@ -23,16 +23,10 @@ function createNewStore(event) {
   getTarget.newStoreMaxCustomer.value = '';
   getTarget.newStoreAverCustomer.value = '';
 
+  var addNewStoreName= new StoreLocations(newStoreNameAdd, newStoreMinCustomer, newStoreMaxCustomer, newStoreAverCustomer);
+  addNewStoreName.genHourNumberCookie();
+  addNewStoreName.createtableRows();
 
-  if(newStoreNameAdd){
-    var addNewStoreName= new StoreLocations(newStoreNameAdd, newStoreMinCustomer, newStoreMaxCustomer, newStoreAverCustomer);
-    addNewStoreName.genHourNumberCookie();
-    addNewStoreName.createtableRows();
-
-    console.log(newStoreNameAdd, newStoreMinCustomer, newStoreMaxCustomer,newStoreAverCustomer);
-  } else {
-    alert('All Input fields are Required');
-  }
 }
 
 //Create our Object template
