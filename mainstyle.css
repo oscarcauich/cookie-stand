@@ -89,24 +89,56 @@ a:active{
 }
 #content {
   display:inline-block;
-  border: 2px solid red;
+  /*border: 2px solid red;*/
   height: 100%;
 }
 #front-big-image{
-border: 2px solid blue;
-position: relative;
-display: block;
-top:0px;
-height: 80%;
+/*border: 2px solid blue;*/
+width: 100%;
+height: 350px;
+background-size:auto;
+background-repeat: no-repeat;
+background-position: center;
+margin: 0px auto;
+background-image: url("images/salmon-cookie2.jpg");
+}
+#information {
+  /*border: 2px solid blue;*/
+}
+#information-column{
+  width: 33%;
+  height: 100%;
+  /*border: 2px solid red;*/
+  display: inline-block;
+}
+#information-column h3 {
+  font-family: 'Libre Franklin', sans-serif;
+  text-align: center;
+  margin-top: 10px;
+  border-bottom: 1px solid #F2CCF5;
+}
+#information-column p {
+  font-family: 'Libre Franklin', sans-serif;
+  text-align: center;
+  /*border: 2px solid blue;*/
+  width: 80%;
+}
+#map {
+  margin: -3px;
+  margin-left: 50px;
+  float:left;
+  /*padding-left: 12px;*/
+  width: 50px;
+  height: 50px;
 }
 #salesResult {
   /*border: 2px solid red;*/
   width: 100%;
-  height: 80%;
+  height: 60%;
   margin: 0px auto;
   /*margin-top: 50px;*/
-  position: absolute;
-  display: table;
+  position: relative;
+  /*display: table;*/
 }
 #footer{
   /*border: 2px solid blue;*/
