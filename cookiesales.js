@@ -1,216 +1,90 @@
-'use strict'
+'use strict';
 
-//Create Store's Object
-var firstAndPike = {
-  ownersName: 'Oscar Cauich',
-  address: '1100 Sunset Bldv NE',
-  city:'Renton',
-  state: 'WA',
-  zipCode: 98056,
-  storeHours: ['6am', '7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'],
-  hourlyCookieSales: [],
-  phoneNumber: 2063885908,
-  hourlyMinCustomer: 23,
-  hourlyMaxCustomer: 65,
-  avergHourlyCookieSales: 6.3,
-  storeName: '1st and Pike',
+//Select the HTML element we will be modifing
+var displayResult = document.getElementById('tableResults');
 
-  forcastRandomCustomerPerHour: function() {
-    return Math.ceil(Math.random() * (this.hourlyMaxCustomer / this.hourlyMinCustomer));
-  },
-
-  hourlyStoreSales: function() {
-    for (var i = 0; i < this.storeHours.length; i++){
-      this.hourlyCookieSales.push(Math.ceil(Math.random()*(this.avergHourlyCookieSales * this.forcastRandomCustomerPerHour())))[i];
-      // console.log(this.hourlyCookieSales);
-    }
-  },
+//Create our Object template
+function StoreLocations (storeName,hourlyMinCustomer,hourlyMaxCustomer,avegCookies) {
+  this.storeName = storeName;
+  this.hourlyMinCustomer = hourlyMinCustomer;
+  this.hourlyMaxCustomer = hourlyMaxCustomer;
+  this.avegCookies = avegCookies;
+  this.hourlyCookieSales = [];
+  this.storeHours = ['6am', '7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'];
 }
 
-var getStoreHours = firstAndPike.storeHours;
-var generateSalesData = firstAndPike.hourlyStoreSales();
-var getHourlycookieSales = firstAndPike.hourlyCookieSales;
+//Create first Object Method for StoreLocations, this generates a random number of customers
+StoreLocations.prototype.forcastRandomCustomerPerHour = function(){
+  return Math.ceil(Math.random() * (this.hourlyMaxCustomer - this.hourlyMinCustomer +1) + this.hourlyMinCustomer);
+};
 
-var StoreName = document.getElementById('StoreName');
-StoreName.textContent = firstAndPike.storeName;
+//create second Object Method to calculate number of cookies sold
+StoreLocations.prototype.genCookieSales = function() {
+  return Math.ceil(Math.random()*(this.avegCookies * this.forcastRandomCustomerPerHour()));
+};
 
-var storeHours = document.getElementById('CookieHourlySales');
+//function to generate number of cookies per hour and store them into an array
+StoreLocations.prototype.genHourNumberCookie = function(){
+  for(var i = 0; i < this.storeHours.length; i++){
+    this.hourlyCookieSales.push(this.genCookieSales());
+  }
+};
 
-var storeHoursLi;
-for (var i = 0; i < getStoreHours.length; i++ ){
+//Create function to create a table for us
+StoreLocations.prototype.createtableRows = function() {
 
-  storeHoursLi = document.createElement('li');
-  storeHoursLi.textContent = getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies';
-  storeHours.appendChild(storeHoursLi);
-}
+  var rowHours, rowHourDisplay, rowStoreName;
+  rowHours = document.createElement('tr');
+  rowStoreName = document.createElement('td');
+  rowHours.appendChild(rowStoreName);
 
-//Second Location Object
+  rowStoreName.textContent = this.storeName;
 
-var SeaTacAirport = {
-  ownersName: 'Michael Wood',
-  address: '1100 Sunset Bldv NE',
-  city:'Renton',
-  state: 'WA',
-  storeHours: ['6am', '7am','8am','19am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'],
-  hourlyCookieSales: [],
-  zipCode: 98056,
-  phoneNumber: 2063885908,
-  hourlyMinCustomer: 3,
-  hourlyMaxCustomer: 24,
-  avergHourlyCookieSales:1.2,
-  storeName: 'SeaTac Airport ',
+  for(var i = 0; i < this.storeHours.length; i++){
+    rowHourDisplay = document.createElement('td');
+    rowHourDisplay.textContent = this.hourlyCookieSales[i];
+    rowHours.appendChild(rowHourDisplay);
+  }
+  displayResult.appendChild(rowHours);
+};
 
-  forcastRandomCustomerPerHour: function() {
-    return Math.ceil(Math.random() * (this.hourlyMaxCustomer / this.hourlyMinCustomer));
-  },
+StoreLocations.prototype.createTableHeading = function() {
+  var tableHeadingRow = document.createElement('tr');
+  var tableHeading = document.createElement('th');
+  tableHeading.textContent = 'Store Name';
+  tableHeadingRow.appendChild(tableHeading);
 
-  hourlyStoreSales: function() {
-    for (var i = 0; i < this.storeHours.length; i++){
-      this.hourlyCookieSales.push(Math.ceil(Math.random()*(this.avergHourlyCookieSales * this.forcastRandomCustomerPerHour())))[i];
-      // console.log(this.hourlyCookieSales);
-    }
-  },
-}
+  for(var i = 0; i < this.storeHours.length; i++){
+    var rowHourDisplay = document.createElement('th');
+    rowHourDisplay.textContent = this.storeHours[i];
+    tableHeadingRow.appendChild(rowHourDisplay);
 
-var getStoreHours = SeaTacAirport.storeHours;
-var generateSalesData = SeaTacAirport.hourlyStoreSales();
-var getHourlycookieSales = SeaTacAirport.hourlyCookieSales;
+    displayResult.appendChild(tableHeadingRow);
+  }
+};
 
-var StoreName = document.getElementById('StoreNameTwo');
-StoreName.textContent = SeaTacAirport.storeName;
+//First Store
+var firstAndPike = new StoreLocations('1st and Pike', 12, 13, 3.4);
+firstAndPike.genHourNumberCookie();
+firstAndPike.createTableHeading();
+firstAndPike.createtableRows();
 
-var storeHours = document.getElementById('CookieHourlySalesSecondStore');
+//Second Store
+var seaTacAirport = new StoreLocations('SeaTacAirport', 3, 24, 1.2);
+seaTacAirport.genHourNumberCookie();
+seaTacAirport.createtableRows();
 
-var storeHoursLi;
-for (var i = 0; i < getStoreHours.length; i++ ){
-  storeHoursLi = document.createElement('li');
-  storeHoursLi.textContent = getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies';
-  storeHours.appendChild(storeHoursLi);
-}
+//Third Store
+var seattleCenter = new StoreLocations('Seattle Center', 11, 38, 3.7);
+seattleCenter.genHourNumberCookie();
+seattleCenter.createtableRows();
 
-//Third Location
+//Fourth Store
+var capitolHill = new StoreLocations('Capitol Hill', 20, 38, 2.3);
+capitolHill.genHourNumberCookie();
+capitolHill.createtableRows();
 
-var SeattleCenter = {
-  ownersName: 'Michael Wood',
-  address: '1100 Sunset Bldv NE',
-  city:'Renton',
-  state: 'WA',
-  storeHours: ['6am', '7am','8am','19am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'],
-  hourlyCookieSales: [],
-  zipCode: 98056,
-  phoneNumber: 2063885908,
-  hourlyMinCustomer: 11,
-  hourlyMaxCustomer: 38,
-  avergHourlyCookieSales:3.7,
-  storeName: 'Seattle Center',
-
-  forcastRandomCustomerPerHour: function() {
-    return Math.ceil(Math.random() * (this.hourlyMaxCustomer / this.hourlyMinCustomer));
-  },
-
-  hourlyStoreSales: function() {
-    for (var i = 0; i < this.storeHours.length; i++){
-      this.hourlyCookieSales.push(Math.ceil(Math.random()*(this.avergHourlyCookieSales * this.forcastRandomCustomerPerHour())))[i];
-    }
-  },
-}
-
-var getStoreHours = SeattleCenter.storeHours;
-var generateSalesData = SeattleCenter.hourlyStoreSales();
-var getHourlycookieSales = SeattleCenter.hourlyCookieSales;
-
-var StoreName = document.getElementById('StoreNameThree');
-StoreName.textContent = SeattleCenter.storeName;
-
-var storeHours = document.getElementById('CookieHourlySalesThirdStore');
-
-var storeHoursLi;
-for (var i = 0; i < getStoreHours.length; i++ ){
-  storeHoursLi = document.createElement('li');
-  storeHoursLi.textContent = getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies';
-  storeHours.appendChild(storeHoursLi);
-}
-
-//Fourth STore
-var CapitolHill = {
-  ownersName: 'Michael Wood',
-  address: '1100 Sunset Bldv NE',
-  city:'Renton',
-  state: 'WA',
-  storeHours: ['6am', '7am','8am','19am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'],
-  hourlyCookieSales: [],
-  zipCode: 98056,
-  phoneNumber: 2063885908,
-  hourlyMinCustomer: 20,
-  hourlyMaxCustomer: 38,
-  avergHourlyCookieSales:2.3,
-  storeName: 'Capitol Hill',
-
-  forcastRandomCustomerPerHour: function() {
-    return Math.ceil(Math.random() * (this.hourlyMaxCustomer / this.hourlyMinCustomer));
-  },
-
-  hourlyStoreSales: function() {
-    for (var i = 0; i < this.storeHours.length; i++){
-      this.hourlyCookieSales.push(Math.ceil(Math.random()*(this.avergHourlyCookieSales * this.forcastRandomCustomerPerHour())))[i];
-    }
-  },
-}
-
-var getStoreHours = CapitolHill.storeHours;
-var generateSalesData = CapitolHill.hourlyStoreSales();
-var getHourlycookieSales = CapitolHill.hourlyCookieSales;
-
-var StoreName = document.getElementById('StoreNameFourth');
-StoreName.textContent = CapitolHill.storeName;
-
-var storeHours = document.getElementById('CookieHourlySalesFourthStore');
-
-var storeHoursLi;
-for (var i = 0; i < getStoreHours.length; i++ ){
-  storeHoursLi = document.createElement('li');
-  storeHoursLi.textContent = getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies';
-  storeHours.appendChild(storeHoursLi);
-}
-
-//Fifth Location
-var Alki = {
-  ownersName: 'Michael Wood',
-  address: '1100 Sunset Bldv NE',
-  city:'Renton',
-  state: 'WA',
-  storeHours: ['6am', '7am','8am','19am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm'],
-  hourlyCookieSales: [],
-  zipCode: 98056,
-  phoneNumber: 2063885908,
-  hourlyMinCustomer: 2,
-  hourlyMaxCustomer: 16,
-  avergHourlyCookieSales:4.6,
-  storeName: 'Alki',
-
-  forcastRandomCustomerPerHour: function() {
-    return Math.ceil(Math.random() * (this.hourlyMaxCustomer / this.hourlyMinCustomer));
-  },
-
-  hourlyStoreSales: function() {
-    for (var i = 0; i < this.storeHours.length; i++){
-      this.hourlyCookieSales.push(Math.ceil(Math.random()*(this.avergHourlyCookieSales * this.forcastRandomCustomerPerHour())))[i];
-    }
-  },
-}
-
-var getStoreHours = Alki.storeHours;
-var generateSalesData = Alki.hourlyStoreSales();
-var getHourlycookieSales = Alki.hourlyCookieSales;
-
-var StoreName = document.getElementById('StoreNameFifth');
-StoreName.textContent = Alki.storeName;
-
-var storeHours = document.getElementById('CookieHourlySalesFifthStore');
-
-var storeHoursLi;
-for (var i = 0; i < getStoreHours.length; i++ ){
-  storeHoursLi = document.createElement('li');
-  storeHoursLi.textContent = getStoreHours[i] + ' : ' + getHourlycookieSales[i] + ' Cookies';
-  storeHours.appendChild(storeHoursLi);
-}
+//Fifth Store
+var Alki = new StoreLocations('Alki', 2, 16, 4.6);
+Alki.genHourNumberCookie();
+Alki.createtableRows();
