@@ -15,12 +15,12 @@ function StoreLocations (storeName,hourlyMinCustomer,hourlyMaxCustomer,avegCooki
 
 //Create first Object Method for StoreLocations, this generates a random number of customers
 StoreLocations.prototype.forcastRandomCustomerPerHour = function(){
-  return Math.ceil(Math.random() * (this.hourlyMaxCustomer - this.hourlyMinCustomer +1) + this.hourlyMinCustomer);
+  return Math.ceil(Math.random() * (this.hourlyMaxCustomer - this.hourlyMinCustomer + 1) + this.hourlyMinCustomer);
 };
 
 //create second Object Method to calculate number of cookies sold
 StoreLocations.prototype.genCookieSales = function() {
-  return Math.ceil(Math.random()*(this.avegCookies * this.forcastRandomCustomerPerHour()));
+  return Math.ceil(this.avegCookies * this.forcastRandomCustomerPerHour());
 };
 
 //function to generate number of cookies per hour and store them into an array
@@ -33,15 +33,15 @@ StoreLocations.prototype.genHourNumberCookie = function(){
 //Create function to create a table for us
 StoreLocations.prototype.createtableRows = function() {
 
-  var rowHours, rowHourDisplay, rowStoreName;
-  rowHours = document.createElement('tr');
-  rowStoreName = document.createElement('td');
+
+  var rowHours = document.createElement('tr');
+  var rowStoreName = document.createElement('td');
   rowHours.appendChild(rowStoreName);
 
   rowStoreName.textContent = this.storeName;
 
   for(var i = 0; i < this.storeHours.length; i++){
-    rowHourDisplay = document.createElement('td');
+    var rowHourDisplay = document.createElement('td');
     rowHourDisplay.textContent = this.hourlyCookieSales[i];
     rowHours.appendChild(rowHourDisplay);
   }
